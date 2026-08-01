@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="Demand Forecasting Dashboard", layout="wide")
 st.title("📦 Demand Forecasting & Anomaly Detection")
 
-API_URL = "http://localhost:8000"
+API_URL = "https://demand-forecast-api.onrender.com"
 
 df = pd.read_csv("data/sales_data.csv", parse_dates=["date"])
 sku_list = sorted(df["sku_id"].unique())
