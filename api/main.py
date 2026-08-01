@@ -4,6 +4,7 @@ import mlflow.xgboost
 import shap
 from ml.features import build_features
 import xgboost as xgb
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Demand Forecasting API")
 
@@ -57,3 +58,10 @@ def anomalies(sku_id: str):
     result = detect_anomalies(sku_df)
     flagged = result[result["is_anomaly"]]
     return flagged.to_dict(orient="records")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
